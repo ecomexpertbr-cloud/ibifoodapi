@@ -6,8 +6,8 @@ RUN docker-php-ext-install pdo pdo_mysql bcmath
 # Copia os arquivos da sua API para o servidor
 COPY . /var/www/html
 
-# Ajusta as permissões para evitar o erro 775
 # Cria as pastas caso não existam e depois ajusta as permissões
+RUN chown -R www-data:www-data /var/www/html
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
